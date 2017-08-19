@@ -9,8 +9,9 @@ $("document").ready(function () {
             type: 'POST',
             data: $(this).serialize(),
             success: function (response) {
-                if (response === '') {
-                    window.location = 'scraps';
+                console.log(response);
+                if (response === '1') {
+                    window.location = '/';
                 }
             }
         })
@@ -42,7 +43,6 @@ $("document").ready(function () {
                 'login' : $(this).val()
             },
             success: function (response) {
-                console.log(response);
                 if (response) {
                     $('#reg').removeAttr('disabled');
                     $('.checkLogin').html('');

@@ -8,6 +8,10 @@ class UserController
 {
     public function authorization()
     {
+        if (isset($_SESSION['user'])) {
+            header('Location: scraps');
+        }
+
         if (isset($_POST['login'])) {
             $user = new User();
 
@@ -15,6 +19,13 @@ class UserController
             $password = $_POST['password'];
 
             $result = $user->authorization($login, $password);
+
+            if ($result == '') {
+                $userId = $user->getUserByLogin($login);
+                $user->auth($userId);
+            }
+
+            echo $result;
         } else {
             require_once $_SERVER['DOCUMENT_ROOT'] . '/views/index.php';
         }
@@ -40,16 +51,9 @@ class UserController
 
                 $result = $user->reg($login, $password, $passwordRetry);
 
-                if ($result) {
-                    echo '';
-                } else {
-                    echo 'При регистрации произошла ошибка';
-                }
+                echo $result;
             }
         } else {
-            /*$view = new View();
-            $data['isReg'] = true;
-            $view->render('reg', $data);*/
             require_once $_SERVER['DOCUMENT_ROOT'] . '/views/reg.php';
         }
     }

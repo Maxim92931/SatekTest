@@ -31,9 +31,10 @@ class Router
 
         foreach ($this->routes as $name => $path) {
             if (preg_match("|$name|", $uri)) {
-                $segments = explode('/', $path);
+                $segments = explode('/', preg_replace("|$name|", $path, $uri));
                 $controller = ucfirst(array_shift($segments)) . 'Controller';
                 $action = array_shift($segments);
+                $scrapId = array_shift($segments);
 
                 $controllerFile = $_SERVER['DOCUMENT_ROOT'] . '/controllers/' . $controller . '.php';
                 $controller = '\Scraps\\' . $controller;
@@ -42,11 +43,9 @@ class Router
                     require_once $controllerFile;
 
                     $controllerObj = new $controller();
-                    $result = $controllerObj->$action();
+                    $result = $controllerObj->$action($scrapId);
 
-                    if ($result != null) {
-                        break;
-                    }
+                    break;
                 }
             }
         }
@@ -54,6 +53,9 @@ class Router
 
     private function getUri()
     {
+        /*if (isset($_SESSION['user'])) {
+            return 'scraps';
+        }*/
         if (!empty($_SERVER['REQUEST_URI'])) {
             return trim($_SERVER['REQUEST_URI'], '/');
         }

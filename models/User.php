@@ -52,6 +52,26 @@ class User
         }
     }
 
+    public function auth($userId)
+    {
+        $_SESSION['user'] = $userId;
+    }
+
+    public function getUserByLogin($login)
+    {
+        try {
+            $connection = Db::getConnection();
+
+            $stmt = $connection->prepare("SELECT id FROM Users WHERE login = :login");
+            $stmt->execute([':login' => $login]);
+
+            return $stmt->fetch()[0];
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+            die();
+        }
+    }
+
     public function isFreeLogin($login) : bool
     {
         try {
