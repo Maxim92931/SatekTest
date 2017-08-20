@@ -53,6 +53,52 @@ $("document").ready(function () {
             }
         })
     })
+
+    $('#edit').submit(function (e) {
+        e.preventDefault();
+        var id = location.href.split('/');
+        id = id[id.length - 1];
+
+        $.ajax({
+            url: 'scraps',
+            type: 'POST',
+            data: {
+              'action' : 'editScrap',
+              'id' : id,
+              'title' : $('#inputTitle').val(),
+              'text' : $('#inputText').val()
+            },
+            success: function (responce) {
+                document.location.replace('/scraps');
+            }
+        })
+    })
+
+    $('#new').submit(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: 'new',
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function () {
+                document.location.replace('/scraps');
+            }
+        })
+    })
+
+    $('#deleteScrap').click(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: {'action' : 'delete'},
+            success: function () {
+                document.location.replace('/scraps');
+            }
+        })
+    })
 });
 
 

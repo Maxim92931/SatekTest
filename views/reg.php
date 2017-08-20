@@ -22,9 +22,10 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Авторизация</a></li>
-                    <li><a href="reg">Регистрация</a></li>
+                    <li><a href="/">Авторизация</a></li>
+                    <li class="active"><a href="reg">Регистрация</a></li>
                     <li><a href="scraps">Мои записки</a></li>
+                    <li><a href="logout">Выход</a></li>
                 </ul>
             </div>
         </div>
@@ -56,7 +57,7 @@
                 <div class="col-sm-offset-2 col-sm-10">
                     <button id="reg" class="btn btn-default" disabled>Зарегистрироваться</button>
                     <br><br>
-                    Зарегистрированы? <a href="index1.php">Авторизируйтесь</a>
+                    Зарегистрированы? <a href="/">Авторизируйтесь</a>
                 </div>
             </div>
         </form>

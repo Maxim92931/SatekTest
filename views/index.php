@@ -25,6 +25,7 @@
                     <li class="active"><a href="">Авторизация</a></li>
                     <li><a href="reg">Регистрация</a></li>
                     <li><a href="scraps">Мои записки</a></li>
+                    <li><a href="logout">Выход</a></li>
                 </ul>
             </div>
         </div>
@@ -49,7 +50,7 @@
                     <div class="col-sm-offset-2 col-sm-10">
                         <button class="btn btn-default" name = "submit">Войти</button>
                         <br><br>
-                        Нет аккаунта? <a href="../index1.php">Зарегистрируйтесь</a>
+                        Нет аккаунта? <a href="reg">Зарегистрируйтесь</a>
                     </div>
                 </div>
             </form>

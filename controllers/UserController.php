@@ -33,7 +33,9 @@ class UserController
 
     public function reg()
     {
-        $isReg = true;
+        if (isset($_SESSION['user'])) {
+            header('Location: scraps');
+        }
 
         if (isset($_POST['login'])) {
             $user = new User;
@@ -56,5 +58,12 @@ class UserController
         } else {
             require_once $_SERVER['DOCUMENT_ROOT'] . '/views/reg.php';
         }
+    }
+
+    public function logout()
+    {
+        //session_start();
+        unset($_SESSION["user"]);
+        header("Location: /");
     }
 }
